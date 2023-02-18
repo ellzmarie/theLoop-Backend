@@ -11,7 +11,7 @@
 1. Django
 2. REACT
 3. SQL
-4. VS. CODE
+4. VSCODE
 ---
 ### Site info:
 Trello Board: https://trello.com/b/uXG8y6VI/theloop
