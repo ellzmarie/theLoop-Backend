@@ -7,34 +7,34 @@ from django.shortcuts import render, get_object_or_404
 
 # Create your views here.
 
-class Artist(APIView):
+class Artists(APIView):
     
     def get(self, request):
         print(request)
-        artist = Artist.objects.all()
-        data = ArtistsSerializer(artist, many=True).data
+        artists = Artist.objects.all()
+        data = ArtistsSerializer(artists, many=True).data
         return Response(data)
     
     def post(self, request):
         print(request.data)
-        artist = ArtistsSerializer(data=request.data)
-        if artist.is_valid():
-            artist.save()
-            return Response(artist.data, status=status.HTTP_201_CREATED)
+        artists = ArtistsSerializer(data=request.data)
+        if artists.is_valid():
+            artists.save()
+            return Response(artists.data, status=status.HTTP_201_CREATED)
         else:
-            return Response(artist.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(artists.errors, status=status.HTTP_400_BAD_REQUEST)
 
-class ArtistDetail(APIView):
+class ArtistsDetail(APIView):
     def get(self, request, pk):
         print(request)
-        artist = get_object_or_404(Artist, pk=pk)
-        data = ArtistsSerializer(artist).data
+        artists = get_object_or_404(Artist, pk=pk)
+        data = ArtistsSerializer(artists).data
         return Response(data)
     
     def put(self, request, pk):
         print(request)
-        artist = get_object_or_404(Artist, pk=pk)
-        updated = ArtistsSerializer(artist, data=request.data, partial=True)
+        artists = get_object_or_404(Artist, pk=pk)
+        updated = ArtistsSerializer(artists, data=request.data, partial=True)
         if updated.is_valid():
             updated.save()
             return Response(updated.data)
@@ -43,6 +43,6 @@ class ArtistDetail(APIView):
     
     def delete(self, request, pk):
         print(request)
-        artist = get_object_or_404(Artist, pk=pk)
-        artist.delete()
+        artists = get_object_or_404(Artist, pk=pk)
+        artists.delete()
         return Response(status=status.HTTP_204_NO_CONTENT)

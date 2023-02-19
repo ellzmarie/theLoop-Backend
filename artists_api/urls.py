@@ -1,7 +1,7 @@
 from django.urls import path
-from .views import Artist, ArtistDetail
+from .views import Artists, ArtistsDetail
 
 urlpatterns = [
-    path('', Artist.as_view(), name='artist'),
-    path('<int:pk>', ArtistDetail.as_view(), name='Artist_detail')
+    path('', Artists.as_view(), name='artists'),
+    path('<int:pk>', ArtistsDetail.as_view(), name='Artists_detail')
 ]
